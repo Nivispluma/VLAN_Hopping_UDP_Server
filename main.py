@@ -38,6 +38,9 @@ def udp_server(localIP,localPort):
         UDPServerSocket.sendto(bytesToSend, address)
 
 
+# start from command line with: python main.py <server ip> <port>
+# python main.py 
+
 if __name__ == "__main__":
     ip = str(sys.argv[1])
     port = int(sys.argv[2])
