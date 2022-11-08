@@ -39,7 +39,7 @@ def udp_server(localIP,localPort):
 
 
 # start from command line with: python main.py <server ip> <port>
-# python main.py 
+# python main.py 192.168.178.61 50500
 
 if __name__ == "__main__":
     ip = str(sys.argv[1])
