@@ -18,6 +18,6 @@ def hopper(src_ip, dest_ip, dest_port):
 
 if __name__ == "__main__":
     ip_src = str(sys.argv[1])
-    ip_dest = int(sys.argv[2])
+    ip_dest = str(sys.argv[2])
     port_dest = int(sys.argv[3])
     hopper(ip_src, ip_dest,port_dest)
