@@ -1,5 +1,6 @@
 import socket
 import sys
+import datetime
  
 def udp_server(localIP,localPort):
     # localIP     = "127.0.0.1"
@@ -29,9 +30,11 @@ def udp_server(localIP,localPort):
         clientMsg = "Message from Client:{}".format(message)
         clientIP  = "Client IP Address:{}".format(address)
         
-        print()
+        print("------------------------------------------")
+        print(datetime.datetime.now())
         print(clientMsg)
         print(clientIP)
+        print("------------------------------------------")
 
         # Sending a reply to client
 
