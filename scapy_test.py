@@ -2,13 +2,13 @@ from scapy.all import *
 
 
 def test(src_ip, dest_ip, dest_port, network_broadcast):
-    packet = IP(src=src_ip, dst=dest_ip) / UDP(dport=dest_port) / Raw(load="abc")
+    packet =IP(src=src_ip, dst=dest_ip)/UDP(dport=dest_port)/Raw(load="Layer 3 Packet")
 
 
-    ether_pack = Ether(dst="ff:ff:ff:ff:ff:ff")/Dot1Q(vlan=1)/IP(src=src_ip, dst=dest_ip)/ UDP(dport=dest_port) / Raw(load="cooler_pack")
+# # Dot1Q(vlan=1)/\
+    # working layer 2 packet
+    ether_pack =Ether(src="aa:bb:cc:dd:ff:ee", dst="ff:ff:ff:ff:ff:ff")/IP(src=src_ip, dst=dest_ip)/UDP(dport=dest_port) /Raw(load="Standard Layer 2 Packet")
 
-    
- 
     packet.show()
     for i in range(10):
         send(packet)
