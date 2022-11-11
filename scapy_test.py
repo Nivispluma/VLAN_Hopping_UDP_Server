@@ -7,12 +7,22 @@ def test(src_ip, dest_ip, dest_port, network_broadcast):
 
 # # Dot1Q(vlan=1)/\
     # working layer 2 packet
-    ether_pack =Ether(src="aa:bb:cc:dd:ff:ee", dst="ff:ff:ff:ff:ff:ff")/IP(src=src_ip, dst=dest_ip)/UDP(dport=dest_port) /Raw(load="Standard Layer 2 Packet")
+    reference_layer_2 =Ether(src="aa:bb:cc:dd:ff:ee", dst="ff:ff:ff:ff:ff:ff")/IP(src=src_ip, dst=dest_ip)/UDP(dport=dest_port) /Raw(load="Standard Layer 2 Packet")
+    test_layer_2 = Ether(src="aa:bb:cc:dd:ff:ee", dst="ff:ff:ff:ff:ff:ff")/Dot1Q(vlan=1)/Dot1Q(vlan=2)/Dot1Q(vlan=1)/IP(src=src_ip, dst=dest_ip)/UDP(dport=dest_port) /Raw(load="Test Layer 2 Packet")
+    test_icmp = Ether(src="aa:bb:cc:dd:ff:ee", dst="ff:ff:ff:ff:ff:ff")/Dot1Q(vlan=1)/IP(src=src_ip, dst=dest_ip)/ICMP()
 
     packet.show()
-    for i in range(10):
+    for i in range(3):
+        print("-------------------------------------------")
+        print("Layer 3")
         send(packet)
-        sendp(ether_pack)
+        print("Layer 2 - Referenz")
+        sendp(reference_layer_2)
+        print("Layer 2 - Test")
+        sendp(test_layer_2)
+        print("Layer 2 - ICMP")
+        sendp(test_icmp)
+        print("-------------------------------------------")
 
 
 if __name__ == "__main__":
